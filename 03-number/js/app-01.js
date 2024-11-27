@@ -39,8 +39,8 @@ resultado = 20 +34 +56 +5;//115
 resultado = resultado * 0.2;
 
 //Incremento y decremento
-let clicks = 5;  // 5+1 y se guarda en clicks
-clicks = clicks +1;
+let clicks = 5;  
+clicks = clicks +1; // 5+1 y se guarda en clicks
 clicks++; //++ SUMA UN 1 A 5
 ++clicks;
 
