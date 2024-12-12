@@ -12,7 +12,7 @@ let dy = -2;
 let ballRadius = 10; //TAMAÑO PELOTA
 let paddleHeight = 10; //PALETA PARA LA PELOTA
 let paddleWidth = 75; //PALETA PARA LA PELOTA
-let paddleX = (canvas.width - paddleWidth) / 2;//PALETA PARA LA PELOTA
+let paddleX = (canvas.width - paddleWidth)/ 2;//PALETA PARA LA PELOTA
 let rightPressed = false; //VARIABLE PARA BOTON PULSADO
 let leftPressed = false; //VARIABLE PARA BOTON PULSADO
 let brickRowCount = 3; //VARIABLE PARA LADRILLOS
@@ -23,10 +23,10 @@ let brickPadding = 10; //VARIABLE PARA LADRILLOS
 let brickOffsetTop = 30; //VARIABLE PARA LADRILLOS
 let brickOffsetLeft = 30; //VARIABLE PARA LADRILLOS 
 let bricks =[];
-for (c = 0; c < brickColumnCount; c++) {
+for (c = 0; c<brickColumnCount; c++) {
     bricks[c] =[];
-    for (r = 0; r <brickRowCount; r++) {
-        bricks [c] [r] = { x: 0, y: 0};        
+    for (r = 0; r < brickRowCount; r++) {
+        bricks [c] [r] = { x: 0, y: 0, status: 1 };        
     }
 }
    
@@ -81,6 +81,8 @@ function drawPaddle(){ //PALETA DE ABAJO
     else if (leftPressed && paddleX > 0) {
         paddleX -= 7;
     }
+
+    collisionDetection();
 }
 
 document.addEventListener("keydown", keyDownHandler, false); //EVENTO PARA CUANDO PULSES EL TECLADO
@@ -109,25 +111,33 @@ function keyUpHandler(e) { //TECLAS
 function drawBricks() { //BLOQUES
     for (c = 0; c < brickColumnCount; c++){
         for (r = 0; r < brickRowCount; r++) {
-          const brickX = c * (brickWidth + brickPadding) + brickOffsetLeft; // POSICION A DIBUJAR EL LADRILLO
-          const brickY = r * (brickHeight + brickPadding) + brickOffsetTop;
-        bricks [c] [r] .x  = brickX; 
-        bricks [c] [r] .y  = brickY; 
-        ctx.beginPath();
-        ctx.rect(brickX, brickY, brickWidth, brickHeight);
-        ctx.fillStyle = "red";
-        ctx.fill();
-        ctx.closePath(); 
-       }
+            if (bricks [c] [r].status == 1){
+                let brickX = c * (brickWidth + brickPadding) + brickOffsetLeft; // POSICION A DIBUJAR EL LADRILLO
+                let brickY = r * (brickHeight + brickPadding) + brickOffsetTop;
+                bricks [c] [r].x  = brickX; 
+                bricks [c] [r].y  = brickY; 
+                ctx.beginPath();
+                ctx.rect(brickX, brickY, brickWidth, brickHeight);
+                ctx.fillStyle = "red";
+                ctx.fill();
+                ctx.closePath(); 
+            }
+        }
     }
 }
 
 function collisionDetection() { //CHOQUE CONTRA LADRILLOS
     for (c = 0; c < brickColumnCount; c++){
         for  (r = 0; r < brickRowCount; r++){
-            const b = bricks [c] [r]; //calculos
-            if (x > b.x && x < b.x + brickWidth && y > b.y && y < b.y + brickHeight){
+            let b = bricks [c] [r]; //calculos
+            if (
+                x > b.x && 
+                x < b.x + brickWidth && 
+                y > b.y && 
+                y < b.y + brickHeight
+            ){
                 dy = -dy;
+                b.status = 0;
             }
         }
     }
