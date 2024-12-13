@@ -66,8 +66,44 @@ const empresas = [
 // https://www.youtube.com/watch?v=qqR1enOceVg
 
 //Obtener las empresas que tienen 10 años o más
+const empresasViejunas = empresas.filter((empresa) => {
+  return empresa.end - empresa.start >= 10;
+})
+console.log(empresasViejunas);
 
 
+// map: devuelve un array nuevo
+// con lo que devuelva el callback
+const empresasYearsOfActivity = empresas.map((empresa) => {
+  const newEmpresa = {
+    name: empresa.name,
+    years: empresa.end - empresa.start,
+  };
+  return newEmpresa;
+})
+console.log(empresasYearsOfActivity);
+
+
+
+//Se pide un array nuevo solo con el nombre de las empresas pero en Mayusculas
+    // usando map
+
+    const empresasMayus = empresas.map((empresa) => {
+    return { name: empresa.name.toUpperCase() };
+    });
+    console.log(empresasMayus);
+
+
+    //Imprimir con document.write lo siguiente para cada semana:
+    //"<p> Finanzas <strong> 'Financiera Alpha' </strong> te desea <em> Feliz Navidad </em>.</p>
+   // <sm>Contigo desde 1981./sm>"   (con foreach)
+    empresas.forEach((empresa) => {
+      const text = `<p> ${empresa.category} <strong>'${empresa.name}' Finanzas 'Financiera Alpha' </strong> te desea <em> Feliz Navidad </em>.</p>
+   // <sm>Contigo desde ${empresa.start}.</sm>`;
+   document.write(text)
+    });
+
+    
 //ESTO ES POR DEBAJO DEL FILTER
 
 // empresas.miFilter = function (callback) {
