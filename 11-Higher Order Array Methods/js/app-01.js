@@ -103,9 +103,36 @@ console.log(empresasYearsOfActivity);
    document.write(text)
     });
 
-    
-//ESTO ES POR DEBAJO DEL FILTER
 
+
+    //Los metodos se pueden concatenar segun el valor de retorno
+    // const nums2 = [2, 4, 65, 4, 5, 6, 9, 3, 5];
+    const raizYdoble = nums.map((num)=> Math.sqrt(num)).map((num) => num * 2); //Math.sqrt... es un return
+    console.log(raizYdoble);
+    
+    //Crear un array con solo los numeros pares doblados usando filter y map
+    const paresDobles = nums.filter((num) => num % 2 === 0).map((num) => num * 2);
+
+
+    const saludar = function (nombre) {
+      return "Hola" + nombre;
+    };
+    //El de arriba es lo mismo que lo de abajo
+    const saludar2 = nombre => "Hola" + nombre;
+
+    console.log(saludar("Santa Claus"));
+    console.log(saludar2 ("Santa Claus"));
+    
+
+    //IIFE
+    (function (texto) {
+      const texto = _texto;
+      console.log(texto);
+    })("Hola soy una funcion IIFE")
+
+
+
+    //ESTO ES POR DEBAJO DEL FILTER
 // empresas.miFilter = function (callback) {
 //   const array = [];
 //   for (let i = 0; i < empresas.length; i++) {
