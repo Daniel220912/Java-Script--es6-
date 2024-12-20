@@ -1,7 +1,7 @@
 
-    //Funciones Constructoras
+    //Funciones Constructoras   //SIRVE PARA CREAR UNA COSA CON DIFERENTES DATOS
     function Coche(marca, modelo, motor, ruedas) {
-        this.marca = marca;
+        this.marca = marca; //THIS  HACE REFEENCIA AL OBJETO QUE SE CREARÁ
         this.modelo = modelo;
         this.motor = motor;
         this.ruedas = ruedas;
@@ -51,7 +51,7 @@ console.log(motorGasolinaA);
 console.log(motorDieselA);
 
 const coche1 = new Coche("Toyota", "Corolla", motorGasolinaA, 4); //Crea una instancia de coche   
-const coche2 = new Coche("Opel", "Astra", motorDieselA, 4);  
+const coche2 = new Coche("Opel", "Astra", motorDieselA, 4);  //CREAS EL VEHICULO QUE YA TIENES HECHO CON UNOS DATOS EN CONCRETO
 
 console.log(coche1);
 console.log(coche2);

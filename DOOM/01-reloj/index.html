@@ -52,11 +52,6 @@
       <div id="second2" class="digit">0</div>
     </div>
     <script>
-      const now = new Date();
-      const hours = now.getHours().toString().padStart(2, "0"); //CON TOSTRING LO CONVERTIMOS A TEXTO
-      const minutes = now.getMinutes().toString().padStart(2, "0");
-      const seconds = now.getSeconds().toString().padStart(2, "0");
-
       //Nos traemos una referencia de los elementos que necesitamos modificar
       const hour1 = document.getElementById("hour1");
       const hour2 = document.getElementById("hour2");
@@ -65,14 +60,24 @@
       const second1 = document.getElementById("second1");
       const second2 = document.getElementById("second2");
 
-      hour1.textContent = hours[0];
-      hour2.textContent = hours[1]; //TEXT CONTENT TE PERMITE CAMBIAR EL CONTENIDO DE HOURS
-      minute1.textContent = minutes[0];
-      minute2.textContent = minutes[1];
-      second1.textContent = seconds[0];
-      second2.textContent = seconds[1];
+      function updateClock() {
+        const now = new Date();
+        const hours = now.getHours().toString().padStart(2, "0"); //CON TOSTRING LO CONVERTIMOS A STRING Y PADSTART TE RELLENA A LA IZQUIERDA CON 0
+        const minutes = now.getMinutes().toString().padStart(2, "0");
+        const seconds = now.getSeconds().toString().padStart(2, "0");
 
-      //Encapsular el codigo en una funcion llamar a la funcion cada segudno para el reloj
+        hour1.textContent = hours[0];
+        hour2.textContent = hours[1]; //TEXT CONTENT TE PERMITE CAMBIAR EL CONTENIDO DE HOURS
+        minute1.textContent = minutes[0];
+        minute2.textContent = minutes[1];
+        second1.textContent = seconds[0];
+        second2.textContent = seconds[1];
+      }
+
+      setInterval(updateClock, 1000); //Cada segundo se ejecuta la funcion updateClock
+      updateClock(); //Para que se actualice el reloj al cargar la pagina
+
+      //Encapsular el codigo en una funcion llamar a la funcion cada segundo para el reloj
     </script>
   </body>
 </html>
