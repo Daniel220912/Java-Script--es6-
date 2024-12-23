@@ -1,15 +1,13 @@
-//Selectores de ID
- const tituloPrincipal = document.getElementById("titulo-principal") //Seleccionas el h1
- console.log(tituloPrincipal.innerText) //Imprimes el texto del h1; 
+ //Seleccionar el boton
+ const miBoton = document.getElementById("mi-boton");
+ const tituloPrincipal = document.querySelector("#titulo-principal");
+ const itemInput = document.querySelector("#item-input");
 
- //Con query selector
- const tituloPrincipalQuery = document.querySelector("#titulo-principal") //Seleccionas el h1, tiene que ir el # para que sepa que es un id
- console.log(tituloPrincipalQuery.innerText) //Imprimes el texto del h1; 
+//añadirle un evento onclick
+miBoton.addEventListener("click", () => {
 
- //Ejemplo de leer input de texto
- const itemInput = document.getElementById("item-input") //Seleccionas el input
- //Creamos un evento
- itemInput.addEventListener("keyup", () => { //Cuando se suelte una tecla
- console.log(itemInput.value) //Imprimimos el valor del input
- tituloPrincipal.innerText = itemInput.value //Cambiamos el texto del h1 por el valor del input cada vez que se suelte una tecla
- })
+//Actualizar el contenido del h1 con el value del input
+console.log("Has clicado en el botón");
+tituloPrincipal.innerText = itemInput.value; //
+itemInput.value = ""; //Limpia el input de texto
+});
