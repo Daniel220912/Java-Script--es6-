@@ -29,6 +29,7 @@
         border: none;
         border-radius: 5px;
         cursor: pointer;
+        background-color: #365a7a;
       }
 
       h2 {
@@ -43,22 +44,24 @@
     <!-- TODO texto de se acabó el tiempo -->
     <div id="timer" class="timer"></div>
     <label for="init-time-input">Tiempo inicial en segundos</label><br />
-    <input id="init-time-input" type="number" />
-    <button id="btn-set-time">Segundos</button>
+    <input id="init-time-input" type="number" value="60" />
+    <button id="btn-set-time">segundos</button>
     <button id="btn-start">Start</button>
+    <button id="btn-restart">Reincio</button>
 
     <script>
-      const display = document.querySelector("#timer"); //Zona donde se ve el numero
+      const display = document.querySelector("#timer"); //Zona donde se vee el numero
       const btnStart = document.querySelector("#btn-start"); //Boton de start
-      const endTimeMsg = document.querySelector("#end-time-msg"); //Zona donde mostarara el mensaje final
-      const btnSetTime = document.querySelector("#btn-set-time"); //Boton que establece los segundos
+      const btnRestart = document.querySelector("#btn-restart"); //Boton de reinicio
+      const endTimeMsg = document.querySelector("#end-time-msg"); //Zona donde mostrara el mensage final
+      const btnSetTime = document.querySelector("#btn-set-time"); //boton que establece los seguondos
       const initTimeInput = document.querySelector("#init-time-input"); //input del que leemos los segundos del usuario
 
-      let seconds = 10; //valor de los segundos por defecto a 10
-
+      let seconds = initTimeInput.value; //valor de los segundos por defecto segun el value
+      countDown = null; // elimia el contador
       btnSetTime.addEventListener("click", () => {
         seconds = initTimeInput.value;
-        updateDisplay(); //refrescamos el display
+        updateDisplay(); //refrescar el display
       });
 
       btnStart.addEventListener("click", function () {
@@ -66,14 +69,19 @@
         start();
       });
 
+      btnRestart.addEventListener("click", function () {
+        console.log("Reiniciar");
+        restart();
+      });
+
       function updateDisplay() {
         display.textContent = seconds;
       }
 
       function start() {
-        const countDown = setInterval(() => {
+        let countDown = setInterval(() => {
           if (seconds > 0) {
-            console.clear();
+            // console.clear();
             console.log(seconds);
             seconds--;
             updateDisplay(seconds);
@@ -81,11 +89,20 @@
             clearInterval(countDown);
             // alert(" se acabó el tiempo!!")
             endTimeMsg.textContent = "Se acabó el tiempo!!";
+            btnStart.disabled = false;
           }
         }, 1000);
+        console.log("Soy un nuevo setInterval", countDown);
+        //desabilitar el boton de start
+        btnStart.disabled = true;
       }
 
-      updateDisplay();
+      function restart() {
+        seconds = initTimeInput.value;
+        updateDisplay();
+        endTimeMsg.textContent = "";
+      }
+      updateDisplay(seconds);
     </script>
   </body>
 </html>
