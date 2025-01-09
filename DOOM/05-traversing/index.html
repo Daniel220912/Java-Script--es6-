@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Navegar por el DOM</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1 id="titulo">Navegar por el DOM</h1>
+      <div class="padre">
+        <!-- Soy un comentario -->
+        <div class="hijo">
+          Hijo 1 <span style="color: red">Dentro del span</span> después del
+          span
+        </div>
+
+        <div class="hijo">Hijo 2</div>
+
+        <div class="hijo">Hijo 3</div>
+      </div>
+    </div>
+    <script>
+      // traer una referencia al div de la clase padre
+      const padre = document.querySelector(".padre");
+      let out;
+      out = padre;
+      //Obtener hijos de un elemento
+      out = padre.childNodes; //Te enseña todo, los espacios y demas //NodeList
+      out = padre.children; //Te enseña solo los div //HTMLCollection
+      out = padre.children[0]; //Te enseña el div 2
+      out = padre.children[0].innertext; //Te enseña el texto del div 1
+      out = padre.children[0].textContent; //Te enseña el texto del div 2 //Solo tiene en cuenta el texto
+      out = padre.children[0].innerHTML; //Te enseña el texto del div 2 // Tiene en cuenta las etiquetas html
+
+      //seleccionar el primer elemento hijo
+      out = padre.firstChild; //primern nodo
+      out = padre.firstElementChild; // primer elemento
+      //seleccionar el ultimo hijo
+      out = padre.lastChild; //ultimo nodo
+      out = padre.lastElementChild; //ultimo elemento
+      //obtener el elemento padre
+      const h1Hijo = document.querySelector("#titulo");
+      out = h1Hijo.parentNode; //nodo padre
+      out = h1Hijo.parentElement; // elemento padre
+      //obtener los elementos hermanos
+      const hijo2 = document.querySelector(".hijo:nth-child(2)");
+      out = hijo2.style.color = "green";
+      out = hijo2.nextElementSibling.style.backgroundColor = "orange";
+      out = hijo2.previousElementSibling.style.backgroundColor = "blue";
+      console.log(out);
+    </script>
+  </body>
+</html>
