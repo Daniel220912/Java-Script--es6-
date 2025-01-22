@@ -67,3 +67,10 @@ function getData(endpoint) {
   getAllDataPromiseAll();
   console.log("Hilo principal");
   //Investigar promise.ALL
+
+  //tratamiento de errores
+
+  //try catch
+
+
+  //introduccion a los modulos
